@@ -1,0 +1,84 @@
+<?php
+	require_once('connexion.php');
+?>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>my_cinema</title>
+	 <link rel="stylesheet" href="css/bootstrap.css">
+	 <link rel="stylesheet" href="css/main.css">
+	 <link rel="stylesheet" href="css/index.css">
+
+</head>
+<body>
+	<header class="container header ">
+		<div class="row">
+			<h2 class="col-sm-4"><img src="img/log1.jpeg" width="110px" height="40px"></h1>
+				
+			
+			<nav class=" col-sm-8 nav justify-content-center"> <!-- alignement droite -->
+			  <a class="nav-link active" href="#">Film</a>
+			  <a class="nav-link" href=membre.html>Membre</a>
+			  
+			  <a class="nav-link" href="client.html">Client</a>
+			</nav>
+
+		</div>
+	</header>
+<section class="jumbotron">
+	<h1>Rechercher des films</h1>
+	<div class="form">
+		<form action="index.php" method="POST">
+			<select name="genre" placeholder="hhhh" >
+				<option value="">Rechercher par genre</option>
+				<?php
+					$qpdo = 'SELECT nom FROM genre';
+					$query = $pdo->query($qpdo);
+					sort($query);
+					foreach($query as $row){
+						echo '<option value="">'.$row["nom"].'</option>';
+					}
+				?>
+
+			</select><br><br>
+			<select name="distrib" >
+				<option value="">Rechercher par distributeur</option>
+				<?php
+					$qpdo = 'SELECT nom FROM distrib';
+					$query = $pdo->query($qpdo);
+					foreach($query as $row){
+						echo '<option value="">'.$row["nom"].'</option>';
+					}
+				?>
+			</select><br><br>
+			<input class="input" type="text" name="titre" placeholder="Rechercher par titre"><br><br>
+			<button class="but" type="submit" name="submit">Rechercher</button>
+
+		</form>
+	</div>
+	
+	
+</section>
+
+<div class="page-footer font-small blue justify-content-center">
+
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    my_cinema
+  </div>
+ 
+
+
+</div>
+
+
+
+
+	
+
+	
+
+</body>
+</html>
